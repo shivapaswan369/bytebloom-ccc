@@ -55,7 +55,12 @@ The static prototype must not be presented as secure multi-user production. Prod
 - minimal retention and a cleanup policy
 - HTTPS and backups
 
-## GitHub Pages
-Place this folder as `ccc-study/` inside the Pages repository and enable Pages for the repository's `main` branch. Expected URL if using the existing user Pages repo: `https://shivapaswan369.github.io/ccc-study/`.
+## Deployment
+This repository is the deployed project source for the project site: `https://shivapaswan369.github.io/bytebloom-ccc/`. GitHub Pages must publish from the repository's configured branch/root. Confirm deployment status in **Settings → Pages** and the Actions tab after each commit.
 
-The current ChatGPT GitHub connection can read and edit existing repository files, but it does not expose a repository-creation action or a direct file-upload bridge from this working container. Therefore the project is packaged for manual upload; it has not been committed or deployed by this run.
+## Current implementation status
+- Chapter practice now validates requested question counts against the number actually available in that chapter.
+- Local-storage reads now recover from malformed/corrupted JSON instead of crashing on load.
+- Quiz question shuffling uses Fisher–Yates rather than a biased random-sort method.
+- Profile usernames are sanitized before saving.
+- Still not implemented: real accounts/login, server-side student activity tracking, shared leaderboard, secure cloud progress, and full 100-question timed mock. Daily contest feature also remains to be implemented; scheduled content updates do not by themselves create a contest UI.
