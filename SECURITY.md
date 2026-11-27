@@ -4,7 +4,14 @@
 
 LocalStorage can be edited by the user and is not a secure database. Scores are local and can be manipulated. There is no authentication, cloud database, authorization layer, server-side score validation, or rate limiting in this prototype.
 
-Production plan:
+## Not implemented yet
+- No student account/login system or server-side login history.
+- No real shared leaderboard or cloud-sync progress.
+- No secure student admin dashboard.
+- No daily contest feature in the website UI.
+- No full 100-question/90-minute mock exam.
+
+## Production plan:
 - Supabase Auth (or comparable managed auth)
 - PostgreSQL tables for profiles, attempts and leaderboard totals
 - RLS policies so users can edit only their own profile and attempts
