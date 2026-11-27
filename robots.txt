@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shivapaswan369.github.io/bytebloom-ccc/sitemap.xml
