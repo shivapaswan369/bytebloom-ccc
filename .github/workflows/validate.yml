@@ -23,6 +23,7 @@ jobs:
           PY
           node --check /tmp/bytebloom-inline.js
           node --check question-bank.js
+          node --check daily-contest-2026-11-28.js
       - name: Validate question data
         run: |
           node <<'NODE'
@@ -50,3 +51,40 @@ jobs:
           }
           console.log('Validated 100 bilingual questions: 10/chapter, 3 Normal + 4 Medium + 3 Hard, four options, answer keys, explanations, unique English prompts.');
           NODE
+      - name: Validate daily contest data
+        run: |
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          global.window = global;
+          require('./daily-contest-2026-11-28.js');
+          const contest = window.BYTEBLOOM_DAILY_CONTEST;
+          assert.equal(contest.date, '28 November 2026');
+          assert.equal(contest.questionCount, 25);
+          assert.equal(contest.questions.length, 25);
+          assert.equal(contest.durationSeconds, 1800);
+          assert.equal(contest.pointsPerCorrect, 1);
+          assert.equal(contest.negativeMarks, 0);
+          assert.equal(contest.chapters.length, 10);
+          assert.ok(contest.sourceLabel.includes('Official syllabus practice'));
+          assert.ok(contest.sourceLabel.includes('not official exam questions'));
+          const expectedChapters = [3,3,3,3,3,2,2,2,2,2];
+          const expectedDifficulty = {Easy:8, Moderate:9, 'Exam-level':8};
+          const counts = {Easy:0, Moderate:0, 'Exam-level':0};
+          const seenIds = new Set(), seenQuestions = new Set();
+          contest.questions.forEach(q => {
+            assert.ok(q.id && !seenIds.has(q.id), 'duplicate/missing ID');
+            seenIds.add(q.id);
+            assert.ok(q.chapter >= 0 && q.chapter < 10);
+            assert.equal(q.opts.length, 4, q.en);
+            assert.ok(Number.isInteger(q.correct) && q.correct >= 0 && q.correct < 4, q.en);
+            assert.ok(q.hi && q.en && q.expHi && q.expEn, q.en);
+            counts[q.difficulty]++;
+            const key = q.en.toLowerCase().replace(/[^a-z0-9]/g, '');
+            assert.ok(!seenQuestions.has(key), 'duplicate English prompt: '+q.en);
+            seenQuestions.add(key);
+          });
+          expectedChapters.forEach((count, ch) => assert.equal(contest.questions.filter(q=>q.chapter===ch).length, count, 'chapter '+(ch+1)));
+          Object.entries(expectedDifficulty).forEach(([d,n])=>assert.equal(counts[d],n,d));
+          console.log('Validated daily contest: 25 bilingual questions, all chapters, balanced difficulty, unique IDs/prompts, 4 options and answer/explanation data.');
+          NODE
+
