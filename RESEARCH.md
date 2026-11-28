@@ -16,7 +16,24 @@
 6. Never invent missing paper questions to make a set look complete.
 
 ## Starter-bank status
-The current HTML contains 50 independently authored bilingual starter questions (5/chapter). These have basic concept review but are not yet a comprehensive or officially verified question bank. This is a working prototype, not a final exam-preparation database.
+## Daily expansion status — 28 Nov 2026
+
+The repository now has 190 questions total: 50 original starter questions, 40 paraphrased September 2026 memory-based recall concepts, and 100 newly authored bilingual syllabus-based practice questions in `question-bank.js`. No new question is claimed as an official PYQ. The bank remains incomplete and is being expanded daily.
+
+| Chapter | Total | Normal | Medium | Hard |
+|---|---:|---:|---:|---:|
+| Introduction to Computer | 19 | 8 | 8 | 3 |
+| Introduction to Operating System | 18 | 8 | 7 | 3 |
+| Word Processing | 18 | 8 | 7 | 3 |
+| Spreadsheet | 21 | 8 | 10 | 3 |
+| Presentation | 17 | 8 | 6 | 3 |
+| Internet & WWW | 23 | 8 | 12 | 3 |
+| Email, Social Networking & e-Governance | 18 | 8 | 7 | 3 |
+| Digital Financial Services | 18 | 8 | 7 | 3 |
+| Future Skills & Cyber Security | 20 | 8 | 9 | 3 |
+| Introduction to Artificial Intelligence | 18 | 8 | 7 | 3 |
+
+Each chapter now has direct Normal/Medium/Hard buttons and real counts. New items are original syllabus-based practice; recall items are third-party memory-based paraphrases and are tagged Medium. The 100-question/90-minute timed practice is enabled but currently MCQ-only; NIELIT's candidate instructions include MCQ and True/False, so it is not yet a fully faithful exam-format mock. The repeated-concepts page still contains the 50 starter concepts, with no verified frequency claims.
 
 ## September 2026 recall sources
 - 11 Sep recall page: https://cccwifistudy.com/ccc-previous-exam-question-11-sep-2026-with-pdf/
